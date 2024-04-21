@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="counter">0</h1>
+    <div class="overlay">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <div>
+                <a>About</a>
+                <a>Services</a>
+            </div>
+            <div>
+                <a>Playground</a>
+            </div>
+        </nav>
+
+        <div class="header">
+            <div class="h1">f</div>
+            <div class="h1">l</div>
+            <div class="h1">a</div>
+            <div class="h1">u</div>
+            <div class="h1">.</div>
+        </div>
+
+        <div class="hero">
+            <img src="/hero-1.avif" alt="image"/>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <script> 
+
+        function startLoader() {
+            let counterElement = document.querySelector('.counter');
+            let currentValue = 0;
+
+            function updateCounter() {
+                if (currentValue === 100) {
+                    return;
+                } 
+
+                currentValue += Math.floor(Math.random() * 10) + 1;
+
+                if (currentValue > 100) {
+                    currentValue = 100;
+                }
+
+                counterElement.textContent = currentValue;
+
+                let delay = Math.floor(Math.random() * 200) + 50;
+
+                setTimeout(updateCounter, delay);
+            }
+
+            updateCounter();
+        }
+
+        startLoader();
+
+        gsap.to(".counter", 0.25, {
+            delay: 3.5, 
+            opacity: 0,
+        });
+
+        gsap.to(".bar", 1.5, {
+            delay: 3.5,
+            height: 0,
+            stagger: {
+                amount: 0.5,
+            },
+            ease: "power4.inOut",
+        })
+    
+    </script>
+</body>
+</html>
